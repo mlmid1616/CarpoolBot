@@ -1,0 +1,168 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="476,2240" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main: Assign Cars and Items" sap:VirtualizedContainerService.HintSize="436,2120" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="templateDt" />
+      <Variable x:TypeArguments="x:String" Name="fileUrl" />
+      <Variable x:TypeArguments="x:String" Name="spreadSheetId" />
+      <Variable x:TypeArguments="x:String" Name="clientId" />
+      <Variable x:TypeArguments="x:String" Name="clientSecret" />
+      <Variable x:TypeArguments="sd:DataTable" Name="carpoolers" />
+      <Variable x:TypeArguments="sd:DataTable" Name="matrix" />
+      <Variable x:TypeArguments="scg:ICollection(scg:ICollection(x:String))" Name="riders" />
+      <Variable x:TypeArguments="sd:DataTable" Name="drivers" />
+      <Variable x:TypeArguments="sd:DataTable" Name="items" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_emails" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadTextFile Content="[clientId]" DisplayName="Read Text File" FileName="OAuthClientId.txt" sap:VirtualizedContainerService.HintSize="414,59.2" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <ui:ReadTextFile Content="[clientSecret]" DisplayName="Read Text File" FileName="OAuthClientSecret.txt" sap:VirtualizedContainerService.HintSize="414,59.2" sap2010:WorkflowViewState.IdRef="ReadTextFile_2" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="414,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[clientSecret]" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CreateMatrixTemplate workflow" sap:VirtualizedContainerService.HintSize="414,87.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="CreateMatrixTemplate.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="spreadSheetId">[spreadSheetId]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="fileUrl">[fileUrl]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="clientId">[clientId]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="clientSecret">[clientSecret]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Chrome to the Created Template" Hidden="False" sap:VirtualizedContainerService.HintSize="414,199.6" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" NewSession="True" Private="False" Url="[fileUrl]">
+      <ui:OpenBrowser.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,100.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </ActivityAction>
+      </ui:OpenBrowser.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:OpenBrowser>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="414,59.2" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;Welcome to the UiPath trip helper! Please fill out the carpoolers in this spreadsheet and press 'OK' to Continue! You can also list some items for everyone to bring, and carpoolers will be randomly and evenly assigned to them.&quot;]" TopMost="True" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ValidateInput workflow" sap:VirtualizedContainerService.HintSize="414,87.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ValidateInput.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_clientId">[clientId]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_spreadSheetId">[spreadSheetId]</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_carpoolers">[carpoolers]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_clientSecret">[clientSecret]</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_items">[items]</OutArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_emails">[dt_emails]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CreateCarpoolerMatrix workflow" sap:VirtualizedContainerService.HintSize="414,87.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CreateCarpoolerMatrix.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_carpoolers">[carpoolers]</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_matrix">[matrix]</OutArgument>
+        <OutArgument x:TypeArguments="scg:ICollection(scg:ICollection(x:String))" x:Key="out_riders">[riders]</OutArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_drivers">[drivers]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke AssignCarpoolersToItems workflow" sap:VirtualizedContainerService.HintSize="414,87.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="AssignCarpoolersToItems.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_Carpoolers">[carpoolers]</InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_Items">[items]</InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <uga:GSuiteApplicationScope ApiKey="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" CredentialID="[clientId]" CredentialSecret="[clientSecret]" DisplayName="GSuite Application Scope" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="414,593.2" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="json" Services="Sheets">
+      <uga:GSuiteApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ug:SimpleObjectContainer">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ug:SimpleObjectContainer" Name="GSuiteScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,507.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uga:AddNewSheet DisplayName="Add New Sheet" sap:VirtualizedContainerService.HintSize="314,82.4" sap2010:WorkflowViewState.IdRef="AddNewSheet_1" SheetName="Carpool Matrix" SpreadsheetId="[spreadSheetId]" />
+            <uga:WriteRange Result="{x:Null}" DataTable="[matrix]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="314,110.4" sap2010:WorkflowViewState.IdRef="WriteRange_3" IncludeHeaders="True" SheetName="Carpool Matrix" SpreadsheetId="[spreadSheetId]" StartingCell="A1" />
+            <uga:WriteRange Result="{x:Null}" DataTable="[items]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="314,110.4" sap2010:WorkflowViewState.IdRef="WriteRange_4" IncludeHeaders="True" SheetName="Carpool Matrix" SpreadsheetId="[spreadSheetId]" StartingCell="E1" />
+          </Sequence>
+        </ActivityAction>
+      </uga:GSuiteApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uga:GSuiteApplicationScope>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke FormatMatrix workflow" sap:VirtualizedContainerService.HintSize="414,87.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="FormatMatrix.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_sheetId">[spreadSheetId]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_fileUrl">[fileUrl]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_drivers">[drivers]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SendShareableLinkToEmails workflow" sap:VirtualizedContainerService.HintSize="414,87.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="SendShareableLinkToEmails.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_SpreadsheetId">[spreadSheetId]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>

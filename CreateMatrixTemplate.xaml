@@ -1,0 +1,134 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="CreateMatrixTemplate" this:CreateMatrixTemplate.clientId="561610305936-8ldu76mn0mf34h1jl0eseforonj3hm3u.apps.googleusercontent.com" this:CreateMatrixTemplate.clientSecret="7Ao72jZBSrm-noNYdsuC2Ee2"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:this="clr-namespace:"
+ xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite"
+ xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="spreadSheetId" Type="OutArgument(x:String)" />
+    <x:Property Name="fileUrl" Type="OutArgument(x:String)" />
+    <x:Property Name="clientId" Type="InArgument(x:String)" />
+    <x:Property Name="clientSecret" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>CreateMatrixTemplate_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.GSuite</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <uga:GSuiteApplicationScope ApiKey="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" ServiceAccountEmail="{x:Null}" UserEmail="{x:Null}" sap2010:Annotation.AnnotationText="Creates the base sheet that the user will fill out" AuthenticationType="OAuthClientID" CredentialID="[clientId]" CredentialSecret="[clientSecret]" DisplayName="GSuite Application Scope" HasDomainWideAccesss="False" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyType="json" Services="Sheets">
+    <uga:GSuiteApplicationScope.Body>
+      <ActivityAction x:TypeArguments="ug:SimpleObjectContainer">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="ug:SimpleObjectContainer" Name="GSuiteScope" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="sd:DataTable" Name="templateDt" />
+          </Sequence.Variables>
+          <ui:BuildDataTable DataTable="[templateDt]" DisplayName="Build Template Data Table" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Carpooler&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Willing_x0020_to_x0020_Drive_x003F_&quot; type=&quot;xs:boolean&quot; default=&quot;true&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Number_x0020_of_x0020_Seats&quot; type=&quot;xs:int&quot; default=&quot;5&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Email&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+          <uga:CreateNewSpreadsheet DisplayName="Create New SpreadSheet" FileURL="[fileUrl]" sap2010:WorkflowViewState.IdRef="CreateNewSpreadsheet_2" SpreadsheetId="[spreadSheetId]" SpreadsheetName="TestTripSpreadsheet" />
+          <uga:WriteRange Result="{x:Null}" DataTable="[templateDt]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="WriteRange_2" IncludeHeaders="True" SheetName="Sheet1" SpreadsheetId="[spreadSheetId]" StartingCell="A1" />
+          <uga:WriteCell Cell="E1" DisplayName="Write Items to Bring Header" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="Sheet1" SpreadsheetId="[spreadSheetId]" Value="Items" />
+        </Sequence>
+      </ActivityAction>
+    </uga:GSuiteApplicationScope.Body>
+    <sads:DebugSymbol.Symbol>d1ZDOlxVc2Vyc1xtbG1pZFxEb3dubG9hZHNcQ2FycG9vbFRyaXBIZWxwZXJcQ2FycG9vbFRyaXBIZWxwZXJcQ3JlYXRlTWF0cml4VGVtcGxhdGUueGFtbBYB3wEB+AEBAwFtAbYBAQJcA24gAgEBXLECXMECAgEbXJMCXJ8CAgEZYglqFAIBAmYLZu4OAgEWZwtn3wECARBoC2jsAQIBCWkLab8BAgEDZihmNgIBF2fHAWfcAQIBFWdSZ10CARNnpQFntgECARFo5QFo6QECAQ9oN2hFAgENaK8BaLcBAgEMaMYBaNcBAgEKabUBabwBAgEIaR9pIwIBB2mGAWmOAQIBBmmdAWmuAQIBBA==</sads:DebugSymbol.Symbol>
+  </uga:GSuiteApplicationScope>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="BuildDataTable_1" sap:VirtualizedContainerService.HintSize="314,59.2" />
+      <sap2010:ViewStateData Id="CreateNewSpreadsheet_2" sap:VirtualizedContainerService.HintSize="314,59.2" />
+      <sap2010:ViewStateData Id="WriteRange_2" sap:VirtualizedContainerService.HintSize="314,110.4" />
+      <sap2010:ViewStateData Id="WriteCell_1" sap:VirtualizedContainerService.HintSize="314,110.4" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="336,583.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GSuiteApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,697.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CreateMatrixTemplate_1" sap:VirtualizedContainerService.HintSize="454,777.6" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
